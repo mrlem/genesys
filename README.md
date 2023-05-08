@@ -10,16 +10,16 @@ It supports:
 
 Here's what it looks like for a large tree:
 
-![](screenshots/global_tree.png)
+![Global family tree](screenshots/global_tree.png)
 
 And looking closer:
 
-![](screenshots/tree_detail.png)
+![Family tree detail](screenshots/tree_detail.png)
 
 ## Usage
 
 You can use the [latest release](https://github.com/mrlem/genesys/releases/latest) on github.
-For detailed step by step instructions, see the [Quickstart](doc/QUICKSTART.md).
+For detailed step-by-step instructions, see the [Quickstart](doc/QUICKSTART.md).
 
 Full command line documentation:
 ```
@@ -27,10 +27,10 @@ Usage: genesys options_list
 Arguments:
     Input file (optional) { String }
 Options:
-    --output, -o -> Output file name { String }
-    --outputType, -t -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
-    --noPreview, -np -> No preview
-    --help, -h -> Usage info
+    --output, -o      -> Output file name { String }
+    --outputType, -t  -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
+    --noPreview, -np  -> No preview
+    --help, -h        -> Usage info
 ```
 
 
