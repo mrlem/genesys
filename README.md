@@ -5,8 +5,8 @@
 ## Features
 
 It supports:
-* GEDCOM to PDF conversion
-* a single tree format, suitable large trees, that doesn't become a mess when the tree contains loops
+* GEDCOM to various visualization formats (PDF & SVG among others)
+* a single tree format, suitable for large trees, that doesn't become a mess when the tree contains loops
 
 Here's what it looks like for a large tree:
 
@@ -19,7 +19,20 @@ And looking closer:
 ## Usage
 
 You can use the [latest release](https://github.com/mrlem/genesys/releases/latest) on github.
-For more detailed information, see the [Quickstart](doc/QUICKSTART.md).
+For detailed step by step instructions, see the [Quickstart](doc/QUICKSTART.md).
+
+Full command line documentation:
+```
+Usage: genesys options_list
+Arguments:
+    Input file (optional) { String }
+Options:
+    --output, -o -> Output file name { String }
+    --outputType, -t -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
+    --noPreview, -np -> No preview
+    --help, -h -> Usage info
+```
+
 
 *Note: Java Runtime environment and GraphViz `dot` utility are needed to run Genesys.*
 
