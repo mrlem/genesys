@@ -1,13 +1,11 @@
 import DI.familyTreeRepository
+import DI.graphvizTreePresenter
 import presentation.GedcomFileChooser
-import presentation.GraphvizTreePresenter
 
 object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val graphvizTreePresenter = GraphvizTreePresenter()
-
         // back to business
         GedcomFileChooser().show { result ->
             if (result.isSuccess) {
