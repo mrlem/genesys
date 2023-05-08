@@ -18,10 +18,11 @@ And looking closer:
 
 ## Usage
 
-You can use the latest release on github.
-Or `./gradlew run`.
+You can use the [latest release](https://github.com/mrlem/genesys/releases/latest) on github.
 
 *Note: you should also have the `dot` command installed on your computer (this usually comes GraphViz).*
+
+Or if you're a developer and want to dive in the app: `./gradlew run`.
 
 ## About
 
