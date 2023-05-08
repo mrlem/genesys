@@ -13,15 +13,16 @@ object Main {
         val parser = ArgParser("genesys")
         val input by parser.argument(ArgType.String, "Input file").optional()
         val output by parser.option(ArgType.String, shortName = "o", description = "Output file name")
-        val preview by parser.option(ArgType.Boolean, shortName = "p", description = "Enable preview")
+        val noPreview by parser.option(ArgType.Boolean, shortName = "np", description = "No preview")
         parser.parse(args)
 
         // proceed with generation
         val filename = input
+        val preview = !(noPreview ?: false)
         if (filename == null) {
-            askFile { chosenFilename -> generate(chosenFilename, output, preview ?: false) }
+            askFile { chosenFilename -> generate(chosenFilename, output, preview) }
         } else {
-            generate(filename, output, preview ?: false)
+            generate(filename, output, preview)
         }
     }
 
