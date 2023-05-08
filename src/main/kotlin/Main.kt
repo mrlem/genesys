@@ -23,15 +23,10 @@ object Main {
 
         // back to business
         GedcomFileChooser().show { result ->
-            when {
-                result.isSuccess -> {
-                    val filename = result.getOrNull()?.absolutePath ?: return@show
-                    val tree = familyTreeRepository.getTree(filename)
-                    graphvizTreePresenter.show("$filename.pdf", tree)
-                }
-                else -> {
-                    System.err.println("invalid gedcom file")
-                }
+            if (result.isSuccess) {
+                val filename = result.getOrNull()?.absolutePath ?: return@show
+                val tree = familyTreeRepository.getTree(filename)
+                graphvizTreePresenter.show("$filename.pdf", tree)
             }
         }
     }
