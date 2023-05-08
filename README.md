@@ -18,7 +18,7 @@ And looking closer:
 
 ## Usage
 
-No package for now, you need to run the main fun in Main.kt.
+No package for now, you need to run the main fun in Main.kt. You should also have the `dot` command installed on your computer (this usually comes GraphViz).
 
 As long as I'm the only person interested, I won't package
 it. If anybody wants a package, create an issue, I'll do it, but for now, I'm the only user and I'm satisfied 🙂
