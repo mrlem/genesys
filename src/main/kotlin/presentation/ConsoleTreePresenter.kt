@@ -9,7 +9,7 @@ class ConsoleTreePresenter {
     private var maxLevel: Int = 0
 
     fun show(tree: FamilyTree) {
-        displayPerson(tree.root)
+        tree.root?.let { displayPerson(tree.root) }
 
         println("# of back-tracked generations: $maxLevel")
     }

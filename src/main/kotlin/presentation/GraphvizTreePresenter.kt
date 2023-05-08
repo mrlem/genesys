@@ -13,7 +13,7 @@ class GraphvizTreePresenter {
     }
     fun generate(outputFile: String, outputType: OutputType, tree: FamilyTree) {
         val graph = digraph("G") {
-            addTree(tree.root)
+            tree.root?.let { addTree(it) }
         }
         graph.generate(outputFile, outputType)
     }

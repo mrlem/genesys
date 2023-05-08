@@ -12,7 +12,13 @@ data class Person(
 data class Date(
     val year: Int,
     val exact: Boolean,
-)
+) : Comparable<Date> {
+
+    override fun compareTo(other: Date): Int {
+        return year.compareTo(other.year)
+    }
+
+}
 
 enum class Sex {
     MALE,

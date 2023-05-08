@@ -1,9 +1,6 @@
 package data.converter
 
-import domain.model.FamilyTree
-import domain.model.Name
-import domain.model.Person
-import domain.model.Sex
+import domain.model.*
 import org.folg.gedcom.model.Gedcom
 
 class FamilyTreeConverter(
@@ -11,8 +8,30 @@ class FamilyTreeConverter(
     private val dateConverter: DateConverter,
 ) {
 
-    fun fromGedcom(gedcom: Gedcom): FamilyTree {
-        return FamilyTree(root = personFromGedcom(gedcom.people.first().id, gedcom))
+    companion object {
+
+        private val DATE_OLDEST = Date(year = Int.MIN_VALUE, exact = false)
+
+    }
+
+    fun fromGedcom(gedcom: Gedcom, rootPolicy: RootPolicy): FamilyTree {
+        val personsCache: HashMap<String, Person> = HashMap()
+        val persons = gedcom.people
+            .map { person -> personFromGedcom(personId = person.id, gedcom = gedcom, personsCache = personsCache) }
+
+        val rootPerson = when (rootPolicy) {
+            is RootPolicy.FirstIndividual -> persons.firstOrNull()
+            is RootPolicy.MostRecent -> {
+                persons.maxBy { it.birth ?: DATE_OLDEST }
+            }
+            is RootPolicy.Designated -> {
+                persons.firstOrNull {
+                    "${it.name.firstNames} ${it.name.lastName}".equals(rootPolicy.name, ignoreCase = true) ||
+                            "${it.name.lastName} ${it.name.firstNames}".equals(rootPolicy.name, ignoreCase = true)
+                }
+            }
+        }
+        return FamilyTree(root = rootPerson)
     }
 
     private fun personFromGedcom(
@@ -20,6 +39,8 @@ class FamilyTreeConverter(
         gedcom: Gedcom,
         personsCache: HashMap<String, Person> = HashMap(),
     ): Person {
+        personsCache[personId]?.let { return it }
+
         val gedcomPerson = gedcom.getPerson(personId)
         val family = gedcomPerson.parentFamilyRefs.firstOrNull()
             ?.ref
