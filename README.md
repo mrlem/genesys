@@ -19,8 +19,9 @@ And looking closer:
 ## Usage
 
 You can use the [latest release](https://github.com/mrlem/genesys/releases/latest) on github.
+For more detailed information, see the [Quickstart](doc/QUICKSTART.md).
 
-*Note: you should also have the `dot` command installed on your computer (this usually comes GraphViz).*
+*Note: Java Runtime environment and GraphViz `dot` utility are needed to run Genesys.*
 
 Or if you're a developer and want to dive in the app: `./gradlew run`.
 
