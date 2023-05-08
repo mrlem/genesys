@@ -28,7 +28,7 @@ website.
 
 ### Genesys
 
-Get the latest version package which can be found here.
+Get the [latest version](https://github.com/mrlem/genesys/releases/latest) package.
 
 You can **download**:
 
