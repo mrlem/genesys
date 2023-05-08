@@ -1,0 +1,20 @@
+package domain.model
+
+data class Person(
+    val id: String,
+    val name: Name = Name(),
+    val parents: List<Person> = emptyList(),
+    val sex: Sex? = null,
+    val birth: Date? = null,
+    val death: Date? = null,
+)
+
+data class Date(
+    val year: Int,
+    val exact: Boolean,
+)
+
+enum class Sex {
+    MALE,
+    FEMALE,
+}
