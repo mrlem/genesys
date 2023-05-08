@@ -1,6 +1,7 @@
 package presentation
 
 import domain.model.FamilyTree
+import domain.model.OutputType
 import domain.model.Person
 
 class GraphvizTreePresenter {
@@ -8,11 +9,11 @@ class GraphvizTreePresenter {
     companion object {
         private const val MAX_LEVEL = 20
     }
-    fun generate(outputFile: String, tree: FamilyTree) {
+    fun generate(outputFile: String, outputType: OutputType, tree: FamilyTree) {
         val graph = digraph("G") {
             addTree(tree.root)
         }
-        graph.generatePDF(outputFile)
+        graph.generate(outputFile, outputType)
     }
 
     fun show(file: String) {

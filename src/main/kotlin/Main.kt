@@ -1,5 +1,6 @@
 import DI.familyTreeRepository
 import DI.graphvizTreePresenter
+import domain.model.OutputType
 import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlinx.cli.optional
@@ -13,6 +14,7 @@ object Main {
         val parser = ArgParser("genesys")
         val input by parser.argument(ArgType.String, "Input file").optional()
         val output by parser.option(ArgType.String, shortName = "o", description = "Output file name")
+        val outputType by parser.option(ArgType.Choice<OutputType>(), shortName = "t", description = "Output file type")
         val noPreview by parser.option(ArgType.Boolean, shortName = "np", description = "No preview")
         parser.parse(args)
 
@@ -20,9 +22,9 @@ object Main {
         val filename = input
         val preview = !(noPreview ?: false)
         if (filename == null) {
-            askFile { chosenFilename -> generate(chosenFilename, output, preview) }
+            askFile { chosenFilename -> generate(chosenFilename, output, outputType, preview) }
         } else {
-            generate(filename, output, preview)
+            generate(filename, output, outputType, preview)
         }
     }
 
@@ -33,14 +35,16 @@ object Main {
         }
     }
 
-    private fun generate(filename: String, outputFilename: String?, preview: Boolean) {
+    private fun generate(filename: String, outputFilename: String?, outputType: OutputType?, preview: Boolean) {
         val tree = familyTreeRepository.getTree(filename)
 
-        val outputFilename = outputFilename ?: "$filename.pdf"
+        val outputType = outputType ?: OutputType.PDF
+        val outputFilename = outputFilename ?: "$filename.${outputType.name.lowercase()}"
         println("generating $outputFilename")
 
         graphvizTreePresenter.generate(
             outputFile = outputFilename,
+            outputType = outputType,
             tree = tree,
         )
 
