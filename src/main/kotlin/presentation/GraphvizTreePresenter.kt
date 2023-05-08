@@ -8,15 +8,14 @@ class GraphvizTreePresenter {
     companion object {
         private const val MAX_LEVEL = 20
     }
-    fun show(outputFile: String, tree: FamilyTree) {
+    fun generate(outputFile: String, tree: FamilyTree) {
         val graph = digraph("G") {
             addTree(tree.root)
         }
         graph.generatePDF(outputFile)
-        show(outputFile)
     }
 
-    private fun show(file: String) {
+    fun show(file: String) {
         Runtime.getRuntime().exec("open $file")
     }
 

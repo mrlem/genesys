@@ -12,7 +12,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.familysearch.gedcom:gedcom:1.14.0")
+    implementation("org.familysearch.gedcom:gedcom:1.14.0") // FIXME - not fixed in the upsteam project, maybe submit a patch
+    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
 }
 
 tasks.test {
