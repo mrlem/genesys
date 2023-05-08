@@ -3,8 +3,8 @@ plugins {
     application
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "org.mrlem.genesys"
+version = "1.0"
 
 repositories {
     mavenCentral()
@@ -25,4 +25,15 @@ kotlin {
 
 application {
     mainClass.set("Main")
+}
+
+distributions {
+    main {
+        contents {
+            from("README.md")
+            into("screenshots") {
+                from("screenshots")
+            }
+        }
+    }
 }

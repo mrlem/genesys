@@ -18,10 +18,10 @@ And looking closer:
 
 ## Usage
 
-No package for now, use `./gradlew run`. You should also have the `dot` command installed on your computer (this usually comes GraphViz).
+You can use the latest release on github.
+Or `./gradlew run`.
 
-As long as I'm the only person interested, I won't package
-it. If anybody wants a package, create an issue, I'll do it, but for now, I'm the only user and I'm satisfied 🙂
+*Note: you should also have the `dot` command installed on your computer (this usually comes GraphViz).*
 
 ## About
 
