@@ -6,13 +6,16 @@ object Main {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        // back to business
+        askFile { filename ->
+            val tree = familyTreeRepository.getTree(filename)
+            graphvizTreePresenter.show("$filename.pdf", tree)
+        }
+    }
+
+    private fun askFile(onSelected: (filename: String) -> Unit) {
         GedcomFileChooser().show { result ->
-            if (result.isSuccess) {
-                val filename = result.getOrNull()?.absolutePath ?: return@show
-                val tree = familyTreeRepository.getTree(filename)
-                graphvizTreePresenter.show("$filename.pdf", tree)
-            }
+            result.getOrNull()?.absolutePath
+                ?.let(onSelected)
         }
     }
 
