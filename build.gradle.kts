@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "org.mrlem.genesys"
-version = "1.0.0"
+version = "1.0.1"
 
 repositories {
     mavenCentral()
@@ -31,6 +31,7 @@ distributions {
     main {
         contents {
             from("README.md")
+            from("LICENSE")
             into("screenshots") {
                 from("screenshots")
             }
