@@ -32,7 +32,7 @@ Get the [latest version](https://github.com/mrlem/genesys/releases/latest) packa
 
 You can **download**:
 
-* the `.tar` file if you are on Linux or MacOS
+* the `.tar.gz` file if you are on Linux or MacOS
 * the `.zip` file if you are on Windows
 
 Then **extract** the files to the folder of your choice, referred to later in this document as `<genesys>`.

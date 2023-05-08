@@ -27,10 +27,11 @@ Usage: genesys options_list
 Arguments:
     Input file (optional) { String }
 Options:
-    --output, -o      -> Output file name { String }
-    --outputType, -t  -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
-    --noPreview, -np  -> No preview
-    --help, -h        -> Usage info
+    --output, -o -> Output file name { String }
+    --outputType, -t -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
+    --noPreview, -np -> No preview
+    --root, -r -> Root name { String }
+    --help, -h -> Usage info
 ```
 
 
