@@ -16,8 +16,14 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
 }
 
-tasks.test {
-    useJUnitPlatform()
+tasks {
+    test {
+        useJUnitPlatform()
+    }
+    distTar {
+        compression = Compression.GZIP
+        archiveExtension.set("tar.gz")
+    }
 }
 
 kotlin {
