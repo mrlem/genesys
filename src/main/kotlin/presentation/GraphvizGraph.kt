@@ -11,8 +11,17 @@ data class GraphvizGraph(private val dotContent: String) {
             .apply { writeText(dotContent) }
         dotFile.deleteOnExit()
 
-        val dotProcess = Runtime.getRuntime().exec("dot -T ${outputType.name.lowercase()} ${dotFile.absolutePath} -o $filename")
+        val commands = arrayOf(
+            "dot",
+            "-T${outputType.name.lowercase()}",
+            dotFile.absolutePath,
+            "-o",
+            filename,
+        )
+        val dotProcess = Runtime.getRuntime().exec(commands)
+        println("exec: ${commands.joinToString(" ")}")
         dotProcess.waitFor()
+        println("exec: returned ${dotProcess.exitValue()}")
     }
 
 }

@@ -3,6 +3,8 @@ package presentation
 import domain.model.FamilyTree
 import domain.model.OutputType
 import domain.model.Person
+import java.awt.Desktop
+import java.io.File
 
 class GraphvizTreePresenter {
 
@@ -17,7 +19,9 @@ class GraphvizTreePresenter {
     }
 
     fun show(file: String) {
-        Runtime.getRuntime().exec("open $file")
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().open(File(file))
+        }
     }
 
     private fun DigraphScope.addTree(root: Person) {
