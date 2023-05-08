@@ -13,6 +13,7 @@ Here's what it looks like for a large tree:
 ![](screenshots/global_tree.png)
 
 And looking closer:
+
 ![](screenshots/tree_detail.png)
 
 ## Usage
