@@ -37,6 +37,8 @@ object Main {
         val tree = familyTreeRepository.getTree(filename)
 
         val outputFilename = outputFilename ?: "$filename.pdf"
+        println("generating $outputFilename")
+
         graphvizTreePresenter.generate(
             outputFile = outputFilename,
             tree = tree,
