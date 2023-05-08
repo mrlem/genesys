@@ -42,6 +42,9 @@ distributions {
             into("screenshots") {
                 from("screenshots")
             }
+            into("sample") {
+                from("sample")
+            }
         }
     }
 }
