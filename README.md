@@ -56,5 +56,11 @@ importing my GEDCOM file in every tool on the planet, when all I wanted was to c
 ### Acknowlegments
 
 Built with:
+
 * [gedcom5-java](https://github.com/FamilySearch/gedcom5-java) parser, from [FamilySearch](https://github.com/FamilySearch/).
 * [GraphViz](https://graphviz.org/) graph generator (not included)
+
+Also thanks to:
+
+* [GraphvizOnline](https://dreampuf.github.io/GraphvizOnline/), a wonderful tool for realtime experiments, that I used
+extensively to adjust my GraphViz layout.
