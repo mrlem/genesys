@@ -40,20 +40,25 @@ object Main {
     }
 
     private fun generate(filename: String, outputFilename: String?, outputType: OutputType?, preview: Boolean, rootPolicy: RootPolicy) {
-        val tree = familyTreeRepository.getTree(filename, rootPolicy)
+        try {
+            val tree = familyTreeRepository.getTree(filename, rootPolicy)
 
-        val outputType = outputType ?: OutputType.PDF
-        val outputFilename = outputFilename ?: "$filename.${outputType.name.lowercase()}"
-        println("generating $outputFilename")
+            val outputType = outputType ?: OutputType.PDF
+            val outputFilename = outputFilename ?: "$filename.${outputType.name.lowercase()}"
+            println("generating $outputFilename")
 
-        graphvizTreePresenter.generate(
-            outputFile = outputFilename,
-            outputType = outputType,
-            tree = tree,
-        )
+            graphvizTreePresenter.generate(
+                outputFile = outputFilename,
+                outputType = outputType,
+                tree = tree,
+            )
 
-        if (preview) {
-            graphvizTreePresenter.show(outputFilename)
+            if (preview) {
+                graphvizTreePresenter.show(outputFilename)
+            }
+        } catch (e: Exception) {
+            System.err.println("generation failed:")
+            e.printStackTrace()
         }
     }
 

@@ -14,6 +14,7 @@ class FamilyTreeConverter(
 
     }
 
+    @Throws(NoSuchElementException::class)
     fun fromGedcom(gedcom: Gedcom, rootPolicy: RootPolicy): FamilyTree {
         val personsCache: HashMap<String, Person> = HashMap()
         val persons = gedcom.people
@@ -22,7 +23,8 @@ class FamilyTreeConverter(
         val rootPerson = when (rootPolicy) {
             is RootPolicy.FirstIndividual -> persons.firstOrNull()
             is RootPolicy.MostRecent -> {
-                persons.maxBy { it.birth ?: DATE_OLDEST }
+                persons.maxByOrNull { it.birth ?: DATE_OLDEST }
+                    ?: throw NoSuchElementException("cannot find the most recent individual among ${persons.size} in GEDCOM")
             }
             is RootPolicy.Designated -> {
                 persons.firstOrNull {
@@ -30,6 +32,7 @@ class FamilyTreeConverter(
                     "${it.name.firstNames} ${it.name.lastName}".equals(rootPolicy.name, ignoreCase = true) ||
                             "${it.name.lastName} ${it.name.firstNames}".equals(rootPolicy.name, ignoreCase = true)
                 }
+                    ?: throw NoSuchElementException("cannot find root \"${rootPolicy.name}\"")
             }
         }
         return FamilyTree(root = rootPerson)
