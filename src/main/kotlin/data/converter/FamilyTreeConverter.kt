@@ -26,6 +26,7 @@ class FamilyTreeConverter(
             }
             is RootPolicy.Designated -> {
                 persons.firstOrNull {
+                    it.id.equals(rootPolicy.name, ignoreCase = true) ||
                     "${it.name.firstNames} ${it.name.lastName}".equals(rootPolicy.name, ignoreCase = true) ||
                             "${it.name.lastName} ${it.name.firstNames}".equals(rootPolicy.name, ignoreCase = true)
                 }

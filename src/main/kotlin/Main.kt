@@ -16,7 +16,7 @@ object Main {
         val input by parser.argument(ArgType.String, "GEDCOM file").optional()
         val output by parser.option(ArgType.String, shortName = "o", description = "Output file [default: <GEDCOM file>.pdf]")
         val outputType by parser.option(ArgType.Choice<OutputType>(), shortName = "t", description = "Output file type [default: pdf]")
-        val root by parser.option(ArgType.String, shortName = "r", description = "Individual, for instance \"John Henry Doe\" [default: most recent individual]")
+        val root by parser.option(ArgType.String, shortName = "r", description = "Individual, like \"John Henry Doe\", or identifier,  like \"I1\" [default: most recent individual]")
         val noPreview by parser.option(ArgType.Boolean, shortName = "np", description = "No preview")
         parser.parse(args)
 
