@@ -25,13 +25,13 @@ Full command line documentation:
 ```
 Usage: genesys options_list
 Arguments:
-    Input file (optional) { String }
+    GEDCOM file (optional) { String }
 Options:
-    --output, -o -> Output file name { String }
-    --outputType, -t -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
+    --output, -o     -> Output file [default: <GEDCOM file>.pdf] { String }
+    --outputType, -t -> Output file type [default: pdf] { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
+    --root, -r       -> Individual, like "John Henry Doe", or identifier,  like "I1" [default: most recent individual] { String }
     --noPreview, -np -> No preview
-    --root, -r -> Root name { String }
-    --help, -h -> Usage info
+    --help, -h       -> Usage info
 ```
 
 
