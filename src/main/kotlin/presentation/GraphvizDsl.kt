@@ -30,12 +30,14 @@ fun DigraphScope.subgraph(cluster: Boolean = false, content: DigraphScope.() -> 
 }
 
 fun DigraphScope.node(id: String, label: String) {
-    writer.println("${prefix}\"$id\" [label=\"${label}\"]")
+    writer.println("${prefix}\"$id\" [label=\"${label.escape()}\"]")
 }
 
 fun DigraphScope.edge(fromId: String, toId: String, constraint: Boolean) {
     writer.println("${prefix}\"$fromId\" -> \"$toId\" [constraint=$constraint, style=${if (constraint) "solid" else "dotted"}]")
 }
+
+fun String.escape() = replace("\"", "\\\"")
 
 @GraphvizDslMarker
 class DigraphScope(
