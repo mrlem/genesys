@@ -27,11 +27,11 @@ Usage: genesys options_list
 Arguments:
     GEDCOM file (optional) { String }
 Options:
-    --output, -o     -> Output file [default: <GEDCOM file>.pdf] { String }
-    --outputType, -t -> Output file type [default: pdf] { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
-    --root, -r       -> Individual, like "John Henry Doe", or identifier,  like "I1" [default: most recent individual] { String }
-    --noPreview, -np -> No preview
-    --help, -h       -> Usage info
+    --output, -o [<GEDCOM file>.pdf] -> Output file { String }
+    --outputType, -t [PDF]           -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
+    --root, -r [<most recent>]       -> Individual, like "John Henry Doe", or identifier,  like "I1" { String }
+    --noPreview, -np [false]         -> No preview
+    --help, -h                       -> Usage info
 ```
 
 
