@@ -5,7 +5,7 @@ import java.io.File
 
 object GraphvizExecutor {
 
-    fun generate(dotContent: String, filename: String, outputType: OutputType) {
+    fun generate(dotContent: Graph, filename: String, outputType: OutputType) {
         println("content:\n$dotContent")
         val dotFile = File.createTempFile("genesys_", ".dot")
             .apply { writeText(dotContent) }

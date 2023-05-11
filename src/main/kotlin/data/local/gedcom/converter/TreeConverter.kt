@@ -15,7 +15,7 @@ class TreeConverter(
     }
 
     @Throws(NoSuchElementException::class)
-    fun fromGedcom(gedcom: Gedcom, rootPolicy: RootPolicy): FamilyTree {
+    fun fromGedcom(gedcom: Gedcom, rootPolicy: RootPolicy): Tree {
         val personsCache: HashMap<String, Person> = HashMap()
         val persons = gedcom.people
             .map { person -> personFromGedcom(personId = person.id, gedcom = gedcom, personsCache = personsCache) }
@@ -35,7 +35,7 @@ class TreeConverter(
                     ?: throw NoSuchElementException("cannot find root \"${rootPolicy.name}\"")
             }
         }
-        return FamilyTree(root = rootPerson)
+        return Tree(root = rootPerson)
     }
 
     private fun personFromGedcom(

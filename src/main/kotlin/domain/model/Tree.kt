@@ -1,5 +1,5 @@
 package domain.model
 
-data class FamilyTree(
+data class Tree(
     val root: Person?,
 )

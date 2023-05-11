@@ -1,9 +1,8 @@
-package data.local.graphviz
+package data.local.graphviz.converter
 
+import data.local.graphviz.Graph
 import java.io.ByteArrayOutputStream
 import java.io.PrintWriter
-
-typealias Graph = String
 
 fun digraph(name: String, content: DigraphScope.() -> Unit): Graph {
     val out = ByteArrayOutputStream()
