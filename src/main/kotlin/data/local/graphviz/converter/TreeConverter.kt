@@ -46,6 +46,7 @@ class TreeConverter(private val outputFields: List<OutputField>) {
             listOfNotNull(
                 person.formattedName,
                 person.formattedDates.takeIf { outputFields.contains(OutputField.DATES) },
+                person.occupation.takeIf { outputFields.contains(OutputField.OCCUPATION) },
             )
                 .joinToString("\n")
         )

@@ -5,6 +5,7 @@ data class Person(
     val name: Name = Name(),
     val parents: List<Person> = emptyList(),
     val sex: Sex? = null,
+    val occupation: String? = null,
     val birth: Date? = null,
     val death: Date? = null,
 )

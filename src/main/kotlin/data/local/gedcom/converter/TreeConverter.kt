@@ -62,7 +62,7 @@ class TreeConverter(
                         .also { personsCache[spouseId] = it }
             }
             .sortedBy { it.sex }
-        val sex = gedcomPerson.eventsFacts.firstOrNull { it.tag == "SEX" }
+        val sex = gedcomPerson.eventsFacts[EventType.SEX]
             ?.let {
                 when (it.value) {
                     "M" -> Sex.MALE
@@ -72,14 +72,14 @@ class TreeConverter(
             }
 
         val birth = (
-                gedcomPerson.eventsFacts.firstOrNull { it.tag == "BIRT" }
-                    ?: gedcomPerson.eventsFacts.firstOrNull { it.tag == "CHR" }
+                gedcomPerson.eventsFacts[EventType.BIRTH]
+                    ?: gedcomPerson.eventsFacts[EventType.CHRISTENING]
             )
             ?.date
             ?.let { dateConverter.fromGedcom(it) }
         val death = (
-                gedcomPerson.eventsFacts.firstOrNull { it.tag == "DEAT" }
-                    ?: gedcomPerson.eventsFacts.firstOrNull { it.tag == "BURI" }
+                gedcomPerson.eventsFacts[EventType.DEATH]
+                    ?: gedcomPerson.eventsFacts[EventType.BURIAL]
             )
             ?.date
             ?.let { dateConverter.fromGedcom(it) }
@@ -89,6 +89,7 @@ class TreeConverter(
             name = name,
             parents = parents,
             sex = sex,
+            occupation = gedcomPerson.eventsFacts[EventType.OCCUPATION]?.value,
             birth = birth,
             death = death,
         )
