@@ -1,8 +1,10 @@
 import DI.familyTreeRepository
 import DI.graphvizTreePresenter
+import domain.model.OutputPolicy
 import domain.model.OutputType
 import domain.model.RootPolicy
-import presentation.GedcomFileChooser
+import presentation.ui.GedcomFileChooser
+import presentation.cli.Parameters
 
 object Main {
 
@@ -11,14 +13,12 @@ object Main {
         val parameters = Parameters(arguments)
 
         with(parameters) {
-            val filename = input
-            val preview = !(noPreview ?: false)
-            val rootPolicy = root?.let { RootPolicy.Designated(it) } ?: RootPolicy.MostRecent
-
-            if (filename == null) {
-                askFile { chosenFilename -> generate(chosenFilename, output, outputType, preview, rootPolicy) }
-            } else {
-                generate(filename, output, outputType, preview, rootPolicy)
+            input.let { input ->
+                if (input == null) {
+                    askFile { chosenFilename -> generate(chosenFilename, outputPolicy, outputType, !noPreview, rootPolicy) }
+                } else {
+                    generate(input, outputPolicy, outputType, !noPreview, rootPolicy)
+                }
             }
         }
     }
@@ -30,12 +30,15 @@ object Main {
         }
     }
 
-    private fun generate(filename: String, outputFilename: String?, outputType: OutputType?, preview: Boolean, rootPolicy: RootPolicy) {
+    private fun generate(filename: String, outputPolicy: OutputPolicy, outputType: OutputType, preview: Boolean, rootPolicy: RootPolicy) {
         try {
             val tree = familyTreeRepository.getTree(filename, rootPolicy)
 
-            val outputType = outputType ?: OutputType.PDF
-            val outputFilename = outputFilename ?: "$filename.${outputType.name.lowercase()}"
+            val outputFilename = when (outputPolicy) {
+                is OutputPolicy.Suffixed -> "$filename.${outputType.name.lowercase()}"
+                is OutputPolicy.Designated -> outputPolicy.filename
+            }
+
             println("generating $outputFilename")
 
             graphvizTreePresenter.generate(

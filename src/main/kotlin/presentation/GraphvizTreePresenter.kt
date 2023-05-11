@@ -60,7 +60,7 @@ class GraphvizTreePresenter {
 
         val alreadyConnected = mutableSetOf<Person>()
 
-        for (connection in connections) {
+        connections.forEach { connection ->
             val personAlreadyConnected = !alreadyConnected.add(connection.first)
             edge(connection.first.id, connection.second.id, constraint = !personAlreadyConnected)
         }
