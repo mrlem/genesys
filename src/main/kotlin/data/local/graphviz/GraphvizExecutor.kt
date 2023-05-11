@@ -1,11 +1,11 @@
-package presentation
+package data.local.graphviz
 
 import domain.model.OutputType
 import java.io.File
 
-data class GraphvizGraph(private val dotContent: String) {
+object GraphvizExecutor {
 
-    fun generate(filename: String, outputType: OutputType) {
+    fun generate(dotContent: String, filename: String, outputType: OutputType) {
         println("content:\n$dotContent")
         val dotFile = File.createTempFile("genesys_", ".dot")
             .apply { writeText(dotContent) }

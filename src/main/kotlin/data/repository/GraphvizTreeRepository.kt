@@ -1,27 +1,27 @@
-package presentation
+package data.repository
 
+import data.local.graphviz.*
+import data.local.graphviz.GraphvizExecutor.generate
 import domain.model.FamilyTree
 import domain.model.OutputType
 import domain.model.Person
-import java.awt.Desktop
-import java.io.File
+import domain.repository.TreeRepository
 
-class GraphvizTreePresenter {
+class GraphvizTreeRepository : TreeRepository {
 
     companion object {
         private const val MAX_LEVEL = 20
     }
-    fun generate(outputFile: String, outputType: OutputType, tree: FamilyTree) {
+
+    override fun exportTree(tree: FamilyTree, filename: String, outputType: OutputType) {
         val graph = digraph("G") {
             tree.root?.let { addTree(it) }
         }
-        graph.generate(outputFile, outputType)
-    }
-
-    fun show(file: String) {
-        if (Desktop.isDesktopSupported()) {
-            Desktop.getDesktop().open(File(file))
-        }
+        generate(
+            dotContent = graph,
+            filename = filename,
+            outputType = outputType,
+        )
     }
 
     private fun DigraphScope.addTree(root: Person) {

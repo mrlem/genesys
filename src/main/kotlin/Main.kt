@@ -1,10 +1,11 @@
 import DI.genealogyRepository
-import DI.graphvizTreePresenter
+import DI.treeRepository
 import domain.model.OutputPolicy
 import domain.model.OutputType
 import domain.model.RootPolicy
 import presentation.ui.GedcomFileChooser
 import presentation.cli.Parameters
+import presentation.ui.Preview
 
 object Main {
 
@@ -41,14 +42,14 @@ object Main {
 
             println("generating $outputFilename")
 
-            graphvizTreePresenter.generate(
-                outputFile = outputFilename,
-                outputType = outputType,
+            treeRepository.exportTree(
                 tree = tree,
+                filename = outputFilename,
+                outputType = outputType,
             )
 
             if (preview) {
-                graphvizTreePresenter.show(outputFilename)
+                Preview.show(outputFilename)
             }
         } catch (e: Exception) {
             System.err.println("generation failed:")

@@ -1,9 +1,9 @@
-package data.converter
+package data.local.gedcom.converter
 
 import domain.model.*
 import org.folg.gedcom.model.Gedcom
 
-class GenealogyConverter(
+class TreeConverter(
     private val nameConverter: NameConverter,
     private val dateConverter: DateConverter,
 ) {

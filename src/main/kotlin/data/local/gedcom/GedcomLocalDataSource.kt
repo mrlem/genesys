@@ -1,4 +1,4 @@
-package data.local
+package data.local.gedcom
 
 import org.folg.gedcom.model.Gedcom
 import org.folg.gedcom.parser.ModelParser

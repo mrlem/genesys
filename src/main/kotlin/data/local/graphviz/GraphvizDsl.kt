@@ -1,9 +1,11 @@
-package presentation
+package data.local.graphviz
 
 import java.io.ByteArrayOutputStream
 import java.io.PrintWriter
 
-fun digraph(name: String, content: DigraphScope.() -> Unit): GraphvizGraph {
+typealias Graph = String
+
+fun digraph(name: String, content: DigraphScope.() -> Unit): Graph {
     val out = ByteArrayOutputStream()
     val writer = PrintWriter(out)
 
@@ -17,7 +19,7 @@ fun digraph(name: String, content: DigraphScope.() -> Unit): GraphvizGraph {
     writer.println("}")
 
     writer.flush()
-    return GraphvizGraph(out.toString())
+    return out.toString()
 }
 
 fun DigraphScope.subgraph(cluster: Boolean = false, content: DigraphScope.() -> Unit) {

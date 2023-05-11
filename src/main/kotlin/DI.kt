@@ -1,21 +1,21 @@
-import data.converter.DateConverter
-import data.converter.GenealogyConverter
-import data.converter.NameConverter
-import data.local.GedcomLocalDataSource
+import data.local.gedcom.converter.DateConverter
+import data.local.gedcom.converter.TreeConverter
+import data.local.gedcom.converter.NameConverter
+import data.local.gedcom.GedcomLocalDataSource
 import data.repository.GedcomGenealogyRepository
+import data.repository.GraphvizTreeRepository
 import domain.repository.GenealogyRepository
-import presentation.GraphvizTreePresenter
 
 // poor man's DI
 object DI {
 
     val genealogyRepository: GenealogyRepository = GedcomGenealogyRepository(
         dataSource = GedcomLocalDataSource(),
-        converter = GenealogyConverter(
+        converter = TreeConverter(
             nameConverter = NameConverter(),
             dateConverter = DateConverter(),
         ),
     )
-    val graphvizTreePresenter = GraphvizTreePresenter()
+    val treeRepository = GraphvizTreeRepository()
 
 }

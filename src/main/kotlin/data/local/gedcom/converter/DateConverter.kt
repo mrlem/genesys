@@ -1,4 +1,4 @@
-package data.converter
+package data.local.gedcom.converter
 
 import domain.model.Date
 
