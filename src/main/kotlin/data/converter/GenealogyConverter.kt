@@ -3,7 +3,7 @@ package data.converter
 import domain.model.*
 import org.folg.gedcom.model.Gedcom
 
-class FamilyTreeConverter(
+class GenealogyConverter(
     private val nameConverter: NameConverter,
     private val dateConverter: DateConverter,
 ) {

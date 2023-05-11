@@ -1,15 +1,15 @@
 package data.repository
 
-import data.converter.FamilyTreeConverter
+import data.converter.GenealogyConverter
 import data.local.GedcomLocalDataSource
 import domain.model.RootPolicy
-import domain.repository.FamilyTreeRepository
+import domain.repository.GenealogyRepository
 import java.io.IOException
 
-class DefaultFamilyTreeRepository(
+class GedcomGenealogyRepository(
     private val dataSource: GedcomLocalDataSource,
-    private val converter: FamilyTreeConverter,
-) : FamilyTreeRepository {
+    private val converter: GenealogyConverter,
+) : GenealogyRepository {
 
     @Throws(NoSuchElementException::class, IOException::class)
     override fun getTree(filename: String, rootPolicy: RootPolicy) = dataSource.read(filename)

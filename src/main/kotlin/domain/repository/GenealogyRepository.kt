@@ -4,7 +4,7 @@ import domain.model.FamilyTree
 import domain.model.RootPolicy
 import java.io.IOException
 
-interface FamilyTreeRepository {
+interface GenealogyRepository {
 
     @Throws(NoSuchElementException::class, IOException::class)
     fun getTree(filename: String, rootPolicy: RootPolicy): FamilyTree

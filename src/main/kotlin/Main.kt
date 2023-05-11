@@ -1,4 +1,4 @@
-import DI.familyTreeRepository
+import DI.genealogyRepository
 import DI.graphvizTreePresenter
 import domain.model.OutputPolicy
 import domain.model.OutputType
@@ -32,7 +32,7 @@ object Main {
 
     private fun generate(filename: String, outputPolicy: OutputPolicy, outputType: OutputType, preview: Boolean, rootPolicy: RootPolicy) {
         try {
-            val tree = familyTreeRepository.getTree(filename, rootPolicy)
+            val tree = genealogyRepository.getTree(filename, rootPolicy)
 
             val outputFilename = when (outputPolicy) {
                 is OutputPolicy.Suffixed -> "$filename.${outputType.name.lowercase()}"

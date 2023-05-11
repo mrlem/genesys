@@ -1,17 +1,17 @@
 import data.converter.DateConverter
-import data.converter.FamilyTreeConverter
+import data.converter.GenealogyConverter
 import data.converter.NameConverter
 import data.local.GedcomLocalDataSource
-import data.repository.DefaultFamilyTreeRepository
-import domain.repository.FamilyTreeRepository
+import data.repository.GedcomGenealogyRepository
+import domain.repository.GenealogyRepository
 import presentation.GraphvizTreePresenter
 
 // poor man's DI
 object DI {
 
-    val familyTreeRepository: FamilyTreeRepository = DefaultFamilyTreeRepository(
+    val genealogyRepository: GenealogyRepository = GedcomGenealogyRepository(
         dataSource = GedcomLocalDataSource(),
-        converter = FamilyTreeConverter(
+        converter = GenealogyConverter(
             nameConverter = NameConverter(),
             dateConverter = DateConverter(),
         ),
