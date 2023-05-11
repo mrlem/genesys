@@ -1,12 +1,10 @@
 package presentation.cli
 
+import domain.model.OutputField
 import domain.model.OutputPolicy
 import domain.model.OutputType
 import domain.model.RootPolicy
-import kotlinx.cli.ArgParser
-import kotlinx.cli.ArgType
-import kotlinx.cli.default
-import kotlinx.cli.optional
+import kotlinx.cli.*
 
 class Parameters(arguments: Array<String>) {
 
@@ -35,6 +33,12 @@ class Parameters(arguments: Array<String>) {
         description = "Output file type",
     )
         .default(OutputType.PDF)
+    val outputField by parser.option(
+        ArgType.Choice<OutputField>(),
+        shortName = "f",
+        description = "Output field",
+    )
+        .multiple()
     private val root by parser.option(
         ArgType.String, shortName = "r",
         description = "Individual, like \"John Henry Doe\", or identifier,  like \"I1\"",

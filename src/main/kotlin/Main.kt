@@ -1,5 +1,6 @@
 import DI.genealogyRepository
 import DI.treeRepository
+import domain.model.OutputField
 import domain.model.OutputPolicy
 import domain.model.OutputType
 import domain.model.RootPolicy
@@ -16,9 +17,9 @@ object Main {
         with(parameters) {
             input.let { input ->
                 if (input == null) {
-                    askFile { chosenFilename -> generate(chosenFilename, outputPolicy, outputType, !noPreview, rootPolicy) }
+                    askFile { chosenFilename -> generate(chosenFilename, outputPolicy, outputType, !noPreview, rootPolicy, outputField) }
                 } else {
-                    generate(input, outputPolicy, outputType, !noPreview, rootPolicy)
+                    generate(input, outputPolicy, outputType, !noPreview, rootPolicy, outputField)
                 }
             }
         }
@@ -31,7 +32,7 @@ object Main {
         }
     }
 
-    private fun generate(filename: String, outputPolicy: OutputPolicy, outputType: OutputType, preview: Boolean, rootPolicy: RootPolicy) {
+    private fun generate(filename: String, outputPolicy: OutputPolicy, outputType: OutputType, preview: Boolean, rootPolicy: RootPolicy, outputFields: List<OutputField>) {
         try {
             val tree = genealogyRepository.getTree(filename, rootPolicy)
 
@@ -46,6 +47,7 @@ object Main {
                 tree = tree,
                 filename = outputFilename,
                 outputType = outputType,
+                outputFields = outputFields,
             )
 
             if (preview) {

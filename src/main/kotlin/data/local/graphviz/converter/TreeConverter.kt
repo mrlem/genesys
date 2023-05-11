@@ -1,11 +1,14 @@
 package data.local.graphviz.converter
 
+import domain.model.OutputField
 import domain.model.Tree
 import domain.model.Person
 
-object TreeConverter {
+class TreeConverter(private val outputFields: List<OutputField>) {
 
-    private const val MAX_LEVEL = 20
+    companion object {
+        private const val MAX_LEVEL = 20
+    }
 
     fun generate(tree: Tree) = digraph("G") {
         tree.root?.let { addTree(it) }
@@ -38,7 +41,14 @@ object TreeConverter {
     }
 
     private fun DigraphScope.addPerson(person: Person) {
-        node(person.id, person.name.let { "${it.firstNames}\n${it.lastName}" })
+        node(
+            person.id,
+            listOfNotNull(
+                person.formattedName,
+                person.formattedDates.takeIf { outputFields.contains(OutputField.DATES) },
+            )
+                .joinToString("\n")
+        )
     }
 
     private fun DigraphScope.addEdges(root: Person) {
@@ -61,5 +71,21 @@ object TreeConverter {
             }
         }
     }
+
+    private val Person.formattedName
+        get() = "${name.firstNames}\n${name.lastName}"
+
+    private val Person.formattedDates: String?
+        get() {
+            val birthYear = birth?.year
+            val deathYear = death?.year
+
+            return when  {
+                birthYear != null && deathYear != null -> "$birthYear - $deathYear"
+                birthYear != null -> "$birthYear"
+                deathYear != null -> "†$deathYear"
+                else -> null
+            }
+        }
 
 }

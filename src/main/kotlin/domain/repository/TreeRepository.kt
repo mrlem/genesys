@@ -1,5 +1,6 @@
 package domain.repository
 
+import domain.model.OutputField
 import domain.model.Tree
 import domain.model.OutputType
 import java.io.IOException
@@ -7,6 +8,6 @@ import java.io.IOException
 interface TreeRepository {
 
     @Throws(IOException::class)
-    fun exportTree(tree: Tree, filename: String, outputType: OutputType)
+    fun exportTree(tree: Tree, filename: String, outputType: OutputType, outputFields: List<OutputField>)
 
 }
