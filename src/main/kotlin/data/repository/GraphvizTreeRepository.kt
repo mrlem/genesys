@@ -15,11 +15,15 @@ class GraphvizTreeRepository : TreeRepository {
     override fun exportTree(tree: Tree, filename: String, outputType: OutputType, outputFields: List<OutputField>) {
         val graph = TreeConverter(outputFields).generate(tree)
 
-        generate(
-            dotContent = graph,
-            filename = filename,
-            outputType = outputType,
-        )
+        try {
+            generate(
+                dotContent = graph,
+                filename = filename,
+                outputType = outputType,
+            )
+        } catch (e: GraphvizException) {
+            throw IOException(e)
+        }
     }
 
 }
