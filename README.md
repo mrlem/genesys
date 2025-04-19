@@ -48,7 +48,7 @@ Or if you're a developer and want to dive in the app: `./gradlew run`.
 
 ### Motivation
 
-I just couldn't find a free tool to create a tree without limitations in terms of number of generations, that still
+I just couldn't find an open-source tool to create a tree without limitations in terms of number of generations, that still
 looked decent for a large tree (500+ persons), and that handled family loops like I wanted.
 
 Also, I was tired of
