@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "2.2.21"
     application
 }
 
@@ -12,10 +12,9 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
-    implementation("org.familysearch.gedcom:gedcom:1.14.0") // FIXME - not fixed in the upsteam project, maybe submit a patch
-    implementation("org.jetbrains.kotlinx:kotlinx-cli:0.3.5")
-    implementation("org.slf4j:slf4j-nop:1.6.4")
-
+    implementation(libs.familysearch.gedcom)
+    implementation(libs.kotlinx.cli)
+    implementation(libs.slf4j.nop)
 }
 
 tasks {
@@ -29,7 +28,7 @@ tasks {
 }
 
 kotlin {
-    jvmToolchain(11)
+    jvmToolchain(21)
 }
 
 application {

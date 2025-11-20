@@ -1,0 +1,11 @@
+[versions]
+# FIXME - not fixed in the upsteam project, maybe submit a patch
+# reported security issue on https://github.com/FamilySearch/gedcom5-java/issues/37
+gedcom = "1.14.0"
+cli = "0.3.5"
+slf4j = "1.6.4"
+
+[libraries]
+familysearch-gedcom = { group = "org.familysearch.gedcom", name = "gedcom", version.ref = "gedcom" }
+kotlinx-cli = { group = "org.jetbrains.kotlinx", name = "kotlinx-cli", version.ref = "cli" }
+slf4j-nop = { group = "org.slf4j", name = "slf4j-nop", version.ref = "slf4j" }
