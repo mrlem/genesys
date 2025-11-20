@@ -10,7 +10,7 @@ class TreeConverter(
 
     companion object {
 
-        private val DATE_OLDEST = Date(year = Int.MIN_VALUE, exact = false)
+        private val DATE_OLDEST = Date(year = Int.MIN_VALUE, precision = DatePrecision.EXACT)
 
     }
 
