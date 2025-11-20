@@ -29,7 +29,7 @@ Arguments:
 Options:
     --output, -o [<GEDCOM file>.pdf]    -> Output file { String }
     --outputType, -t [PDF]              -> Output file type { Value should be one of [fig, jpeg, pdf, png, svg, webp] }
-    --outputField, -f                   -> Output field { Value should be one of [dates] }
+    --outputField, -f                   -> Output field { Value should be one of [dates, occupation] }
     --root, -r [<most recent>]          -> Individual, like "John Henry Doe", or identifier,  like "I1" { String }
     --noPreview, -np [false]            -> No preview
     --help, -h                          -> Usage info
