@@ -85,7 +85,7 @@ class TreeConverter(private val outputFields: List<OutputField>) {
 
             return when  {
                 birthYear != null && deathYear != null -> "$birthYear - $deathYear"
-                birthYear != null -> birthYear
+                birthYear != null -> "*$birthYear"
                 deathYear != null -> "†$deathYear"
                 else -> null
             }
@@ -93,9 +93,9 @@ class TreeConverter(private val outputFields: List<OutputField>) {
 
     private val Date.formattedDate: String
         get() = when (precision) {
-            DatePrecision.ABOUT -> "~$year"
-            DatePrecision.BEFORE -> "≲$year"
-            DatePrecision.AFTER -> "≳$year"
+            DatePrecision.ABOUT -> "±$year"
+            DatePrecision.BEFORE -> "<$year"
+            DatePrecision.AFTER -> ">$year"
             DatePrecision.EXACT -> "$year"
         }
 
