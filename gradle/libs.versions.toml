@@ -1,6 +1,6 @@
 [versions]
-# FIXME - not fixed in the upsteam project, maybe submit a patch
-# reported security issue on https://github.com/FamilySearch/gedcom5-java/issues/37
+# Reported security issue on https://github.com/FamilySearch/gedcom5-java/issues/37
+# fixed in the upsteam project, but fix has yet to be released.
 gedcom = "1.14.0"
 cli = "0.3.5"
 slf4j = "1.6.4"
