@@ -8,16 +8,28 @@ import domain.model.DatePrecision
 class DateConverter {
 
     companion object {
-        private val GEDCOM_DATE_PATTERN = "^(\\w{3} )?(\\d{2}) (\\w{3}) (\\d{4})$".toRegex()
+        private val GEDCOM_DATE_PATTERN = "^(\\w{3} )?(\\d{1,2}) (\\w{3}) (\\d{4})$".toRegex()
+        private val GEDCOM_MONTH_PATTERN = "^(\\w{3} )?(\\w{3}) (\\d{4})$".toRegex()
         private val GEDCOM_YEAR_PATTERN = "^(\\w{3} )?(\\d{4})$".toRegex()
     }
 
     fun fromGedcom(date: String): Date? =
         fromFullDate(date)
+            ?: fromMonthDate(date)
             ?: fromYearDate(date)
 
     private fun fromFullDate(date: String): Date? {
         val (precision, _, _, year) = (GEDCOM_DATE_PATTERN.matchEntire(date) ?: return null)
+            .destructured
+
+        return Date(
+            year = year.toInt(),
+            precision = precision.asDatePrecision,
+        )
+    }
+
+    private fun fromMonthDate(date: String): Date? {
+        val (precision, _, year) = (GEDCOM_MONTH_PATTERN.matchEntire(date) ?: return null)
             .destructured
 
         return Date(

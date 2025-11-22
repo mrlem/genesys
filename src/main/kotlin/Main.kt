@@ -17,7 +17,9 @@ object Main {
         with(parameters) {
             input.let { input ->
                 if (input == null) {
-                    askFile { chosenFilename -> generate(chosenFilename, outputPolicy, outputType, !noPreview, rootPolicy, outputField) }
+                    askFile { chosenFilename ->
+                        generate(chosenFilename, outputPolicy, outputType, !noPreview, rootPolicy, outputField)
+                    }
                 } else {
                     generate(input, outputPolicy, outputType, !noPreview, rootPolicy, outputField)
                 }
