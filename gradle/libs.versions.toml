@@ -3,7 +3,7 @@
 # fixed in the upsteam project, but fix has yet to be released.
 gedcom = "1.14.0"
 cli = "0.3.6"
-slf4j = "1.6.4"
+slf4j = "2.0.17"
 
 [libraries]
 familysearch-gedcom = { group = "org.familysearch.gedcom", name = "gedcom", version.ref = "gedcom" }
