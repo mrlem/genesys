@@ -3,8 +3,8 @@ package data.local.graphviz.converter
 import domain.model.Date
 import domain.model.DatePrecision
 import domain.model.OutputField
-import domain.model.Tree
 import domain.model.Person
+import domain.model.Tree
 
 class TreeConverter(private val outputFields: List<OutputField>) {
 
@@ -50,7 +50,7 @@ class TreeConverter(private val outputFields: List<OutputField>) {
                 person.formattedDates.takeIf { outputFields.contains(OutputField.DATES) },
                 person.occupation.takeIf { outputFields.contains(OutputField.OCCUPATION) },
             )
-                .joinToString("\n")
+                .joinToString("\n"),
         )
     }
 
@@ -83,7 +83,7 @@ class TreeConverter(private val outputFields: List<OutputField>) {
             val birthYear = birth?.formattedDate
             val deathYear = death?.formattedDate
 
-            return when  {
+            return when {
                 birthYear != null && deathYear != null -> "$birthYear - $deathYear"
                 birthYear != null -> "*$birthYear"
                 deathYear != null -> "†$deathYear"
@@ -98,5 +98,4 @@ class TreeConverter(private val outputFields: List<OutputField>) {
             DatePrecision.AFTER -> ">$year"
             DatePrecision.EXACT -> "$year"
         }
-
 }

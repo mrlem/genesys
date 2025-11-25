@@ -1,11 +1,11 @@
 package data.repository
 
-import data.local.graphviz.*
+import data.local.graphviz.GraphvizException
 import data.local.graphviz.GraphvizExecutor.generate
 import data.local.graphviz.converter.TreeConverter
 import domain.model.OutputField
-import domain.model.Tree
 import domain.model.OutputType
+import domain.model.Tree
 import domain.repository.TreeRepository
 import java.io.IOException
 
@@ -25,5 +25,4 @@ class GraphvizTreeRepository : TreeRepository {
             throw IOException(e)
         }
     }
-
 }

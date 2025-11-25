@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "2.2.21"
     application
+    alias(libs.plugins.ktlint)
 }
 
 group = "org.mrlem.genesys"

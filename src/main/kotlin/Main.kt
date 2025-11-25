@@ -4,8 +4,8 @@ import domain.model.OutputField
 import domain.model.OutputPolicy
 import domain.model.OutputType
 import domain.model.RootPolicy
-import presentation.ui.GedcomFileChooser
 import presentation.cli.Parameters
+import presentation.ui.GedcomFileChooser
 import presentation.ui.Preview
 
 object Main {
@@ -60,5 +60,4 @@ object Main {
             e.printStackTrace()
         }
     }
-
 }

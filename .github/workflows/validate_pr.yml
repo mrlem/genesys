@@ -23,6 +23,9 @@ jobs:
     - name: Setup gradle
       uses: gradle/actions/setup-gradle@v5
 
+    - name: Run ktlint
+      run: ./gradlew ktlintCheck
+
     - name: Run build
       run: ./gradlew build
 

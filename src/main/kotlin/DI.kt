@@ -1,7 +1,7 @@
-import data.local.gedcom.converter.DateConverter
-import data.local.gedcom.converter.TreeConverter
-import data.local.gedcom.converter.NameConverter
 import data.local.gedcom.GedcomLocalDataSource
+import data.local.gedcom.converter.DateConverter
+import data.local.gedcom.converter.NameConverter
+import data.local.gedcom.converter.TreeConverter
 import data.repository.GedcomGenealogyRepository
 import data.repository.GraphvizTreeRepository
 import domain.repository.GenealogyRepository
@@ -17,5 +17,4 @@ object DI {
         ),
     )
     val treeRepository = GraphvizTreeRepository()
-
 }

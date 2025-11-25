@@ -1,6 +1,12 @@
 package data.local.gedcom.converter
 
-import domain.model.*
+import domain.model.Date
+import domain.model.DatePrecision
+import domain.model.Name
+import domain.model.Person
+import domain.model.RootPolicy
+import domain.model.Sex
+import domain.model.Tree
 import org.folg.gedcom.model.Gedcom
 
 class TreeConverter(
@@ -11,7 +17,6 @@ class TreeConverter(
     companion object {
 
         private val DATE_OLDEST = Date(year = Int.MIN_VALUE, precision = DatePrecision.EXACT)
-
     }
 
     @Throws(NoSuchElementException::class)
@@ -26,15 +31,24 @@ class TreeConverter(
                 persons.maxByOrNull { it.birth ?: DATE_OLDEST }
                     ?: throw NoSuchElementException("cannot find the most recent individual among ${persons.size} in GEDCOM")
             }
+
             is RootPolicy.Designated -> {
                 persons.firstOrNull {
-                    it.id.equals(rootPolicy.name, ignoreCase = true) ||
-                    "${it.name.firstNames} ${it.name.lastName}".equals(rootPolicy.name, ignoreCase = true) ||
-                            "${it.name.lastName} ${it.name.firstNames}".equals(rootPolicy.name, ignoreCase = true)
+                    when {
+                        it.id.equals(rootPolicy.name, ignoreCase = true) ->
+                            true
+                        "${it.name.firstNames} ${it.name.lastName}".equals(rootPolicy.name, ignoreCase = true) ->
+                            true
+                        "${it.name.lastName} ${it.name.firstNames}".equals(rootPolicy.name, ignoreCase = true) ->
+                            true
+                        else ->
+                            false
+                    }
                 }
                     ?: throw NoSuchElementException("cannot find root \"${rootPolicy.name}\"")
             }
         }
+
         return Tree(root = rootPerson)
     }
 
@@ -71,16 +85,10 @@ class TreeConverter(
                 }
             }
 
-        val birth = (
-                gedcomPerson.eventsFacts[EventType.BIRTH]
-                    ?: gedcomPerson.eventsFacts[EventType.CHRISTENING]
-            )
+        val birth = (gedcomPerson.eventsFacts[EventType.BIRTH] ?: gedcomPerson.eventsFacts[EventType.CHRISTENING])
             ?.date
             ?.let { dateConverter.fromGedcom(it) }
-        val death = (
-                gedcomPerson.eventsFacts[EventType.DEATH]
-                    ?: gedcomPerson.eventsFacts[EventType.BURIAL]
-            )
+        val death = (gedcomPerson.eventsFacts[EventType.DEATH] ?: gedcomPerson.eventsFacts[EventType.BURIAL])
             ?.date
             ?.let { dateConverter.fromGedcom(it) }
 
@@ -94,5 +102,4 @@ class TreeConverter(
             death = death,
         )
     }
-
 }

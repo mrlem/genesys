@@ -15,10 +15,7 @@ data class Date(
     val precision: DatePrecision,
 ) : Comparable<Date> {
 
-    override fun compareTo(other: Date): Int {
-        return year.compareTo(other.year)
-    }
-
+    override fun compareTo(other: Date): Int = year.compareTo(other.year)
 }
 
 enum class DatePrecision {

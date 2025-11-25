@@ -10,5 +10,4 @@ object Preview {
             Desktop.getDesktop().open(File(file))
         }
     }
-
 }

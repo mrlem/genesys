@@ -39,5 +39,4 @@ object GraphvizExecutor {
     }
 
     private fun String?.default(default: String) = this ?: default
-
 }

@@ -13,10 +13,9 @@ class DateConverter {
         private val GEDCOM_YEAR_PATTERN = "^((?:ABT|BEF|AFT) )?(\\d{4})$".toRegex()
     }
 
-    fun fromGedcom(date: String): Date? =
-        fromFullDate(date)
-            ?: fromYearDate(date)
-            ?: fromMonthDate(date)
+    fun fromGedcom(date: String): Date? = fromFullDate(date)
+        ?: fromYearDate(date)
+        ?: fromMonthDate(date)
 
     private fun fromFullDate(date: String): Date? {
         val (precision, _, _, year) = (GEDCOM_DATE_PATTERN.matchEntire(date) ?: return null)
@@ -55,5 +54,4 @@ class DateConverter {
             "AFT " -> DatePrecision.AFTER
             else -> DatePrecision.EXACT
         }
-
 }

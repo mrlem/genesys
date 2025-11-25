@@ -1,7 +1,7 @@
 package data.repository
 
-import data.local.gedcom.converter.TreeConverter
 import data.local.gedcom.GedcomLocalDataSource
+import data.local.gedcom.converter.TreeConverter
 import domain.model.RootPolicy
 import domain.repository.GenealogyRepository
 import java.io.IOException
@@ -14,5 +14,4 @@ class GedcomGenealogyRepository(
     @Throws(NoSuchElementException::class, IOException::class)
     override fun getTree(filename: String, rootPolicy: RootPolicy) = dataSource.read(filename)
         .let { converter.fromGedcom(it, rootPolicy) }
-
 }

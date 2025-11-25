@@ -7,5 +7,4 @@ sealed interface RootPolicy {
     object MostRecent : RootPolicy
 
     data class Designated(val name: String) : RootPolicy
-
 }

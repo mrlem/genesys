@@ -23,11 +23,11 @@ fun digraph(name: String, content: DigraphScope.() -> Unit): Graph {
 
 fun DigraphScope.subgraph(cluster: Boolean = false, content: DigraphScope.() -> Unit) {
     writer.println("${prefix}subgraph {")
-    writer.println("${prefix}  cluster=$cluster")
+    writer.println("$prefix  cluster=$cluster")
 
     DigraphScope(writer, level + 1).content()
 
-    writer.println("${prefix}}")
+    writer.println("$prefix}")
 }
 
 fun DigraphScope.node(id: String, label: String) {

@@ -1,20 +1,24 @@
 package data.local.gedcom.converter
 
-import domain.model.*
+import domain.model.Date
+import domain.model.DatePrecision
+import domain.model.Name
+import domain.model.RootPolicy
+import domain.model.Sex
 import io.mockk.every
 import io.mockk.mockk
 import org.folg.gedcom.model.EventFact
 import org.folg.gedcom.model.Family
 import org.folg.gedcom.model.Gedcom
 import org.folg.gedcom.model.ParentFamilyRef
-import org.folg.gedcom.model.Name as GedcomName
-import org.folg.gedcom.model.Person as GedcomPerson
 import org.folg.gedcom.model.SpouseRef
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.folg.gedcom.model.Name as GedcomName
+import org.folg.gedcom.model.Person as GedcomPerson
 
 class TreeConverterTest {
 
@@ -85,13 +89,13 @@ class TreeConverterTest {
             EventFact().apply {
                 tag = "BIRT"
                 date = "1980"
-            }
+            },
         )
         gedcomPerson2.eventsFacts = listOf(
             EventFact().apply {
                 tag = "BIRT"
                 date = "1990"
-            }
+            },
         )
         gedcom.createIndexes()
 
@@ -182,7 +186,7 @@ class TreeConverterTest {
                 EventFact().apply {
                     tag = "SEX"
                     value = "M"
-                }
+                },
             )
             names = listOf(GedcomName().apply { value = "Father /Name/" })
         }
@@ -192,7 +196,7 @@ class TreeConverterTest {
                 EventFact().apply {
                     tag = "SEX"
                     value = "F"
-                }
+                },
             )
             names = listOf(GedcomName().apply { value = "Mother /Name/" })
         }

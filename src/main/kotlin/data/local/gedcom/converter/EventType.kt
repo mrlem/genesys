@@ -9,8 +9,7 @@ enum class EventType(val tag: String) {
     CHRISTENING("CHR"),
     DEATH("DEAT"),
     OCCUPATION("OCCU"),
-    SEX("SEX");
-
+    SEX("SEX"),
 }
 
 operator fun List<EventFact>.get(type: EventType) = firstOrNull { it.tag == type.tag }

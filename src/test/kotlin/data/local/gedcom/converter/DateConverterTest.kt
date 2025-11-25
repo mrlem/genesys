@@ -6,7 +6,6 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class DateConverterTest {
-
     private val converter = DateConverter()
 
     @Test

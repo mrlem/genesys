@@ -17,13 +17,10 @@ class GedcomFileChooser : JFileChooser(FileSystemView.getFileSystemView()) {
     }
 
     fun show(onResult: (Result<File>) -> Unit) {
-        if (showOpenDialog(null) == APPROVE_OPTION)
-        {
+        if (showOpenDialog(null) == APPROVE_OPTION) {
             onResult(Result.success(selectedFile))
-        } else
-        {
+        } else {
             onResult(Result.failure(CancellationException("file selection cancelled by user")))
         }
     }
-
 }

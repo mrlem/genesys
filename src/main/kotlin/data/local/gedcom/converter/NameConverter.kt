@@ -25,5 +25,4 @@ class NameConverter {
             lastName = lastName,
         )
     }
-
 }

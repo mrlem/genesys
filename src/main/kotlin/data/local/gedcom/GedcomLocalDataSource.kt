@@ -19,5 +19,4 @@ class GedcomLocalDataSource {
             throw IOException("$filename parsing failed", e)
         }
     }
-
 }
