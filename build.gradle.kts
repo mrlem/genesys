@@ -12,6 +12,10 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    testImplementation(libs.junit.jupiter.api)
+    testImplementation(libs.junit.jupiter.params)
+    testRuntimeOnly(libs.junit.jupiter.engine)
+
     implementation(libs.familysearch.gedcom)
     implementation(libs.kotlinx.cli)
     implementation(libs.slf4j.nop)

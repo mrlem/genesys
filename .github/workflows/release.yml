@@ -43,6 +43,9 @@ jobs:
           java-version: 21
           distribution: temurin
 
+      - name: Run unit tests
+        run: ./gradlew test
+
       - name: Build distributions
         run: ./gradlew assembleDist --no-daemon
 
