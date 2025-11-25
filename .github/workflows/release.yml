@@ -17,34 +17,27 @@ jobs:
       pull-requests: write  # Optionnel : si tu veux une PR pour la mise à jour du README
 
     steps:
-      # 1. Checkout le code
       - name: Checkout repository
         uses: actions/checkout@v4
-#        with:
-#          fetch-depth: 0  # Nécessaire pour push et tag
 
-      # 2. Configurer Git (pour les commits)
-      - name: Configure Git
+      - name: Configure git
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
 
-      # 3. Bumper la version dans build.gradle.kts
-      - name: Bump version in build.gradle.kts
+      - name: Bump app version
         run: |
-          sed -i "s/version = \"[0-9.*]\"/version = \"${{ inputs.version }}\"/g" build.gradle.kts
+          sed -i "s/version = \".*\"/version = \"${{ inputs.version }}\"/g" build.gradle.kts
           git add build.gradle.kts
           git commit -m "build: bump version to ${{ inputs.version }}"
           git push
 
-      # 4. Créer le tag
       - name: Create tag
         run: |
           git tag "v${{ inputs.version }}"
           git push origin "v${{ inputs.version }}"
           
-      # 5. Builder l'artefact
-      - name: Set up JDK
+      - name: Set up java
         uses: actions/setup-java@v3
         with:
           java-version: 21
@@ -53,8 +46,7 @@ jobs:
       - name: Build distributions
         run: ./gradlew assembleDist --no-daemon
 
-      # 6. Créer un draft release sur GitHub
-      - name: Create GitHub Release Draft
+      - name: Create github release draft
         uses: softprops/action-gh-release@v1
         with:
           tag_name: "v${{ inputs.version }}"
@@ -62,5 +54,5 @@ jobs:
           draft: true
           generate_release_notes: true
           files: |
-            build/distributions/*.tar
+            build/distributions/*.tar.gz
             build/distributions/*.zip
