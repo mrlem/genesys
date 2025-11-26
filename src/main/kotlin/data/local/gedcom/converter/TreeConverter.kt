@@ -7,6 +7,7 @@ import domain.model.Person
 import domain.model.RootPolicy
 import domain.model.Sex
 import domain.model.Tree
+import org.folg.gedcom.model.EventFact
 import org.folg.gedcom.model.Gedcom
 
 class TreeConverter(
@@ -29,7 +30,7 @@ class TreeConverter(
             is RootPolicy.FirstIndividual -> persons.firstOrNull()
             is RootPolicy.MostRecent -> {
                 persons.maxByOrNull { it.birth ?: DATE_OLDEST }
-                    ?: throw NoSuchElementException("cannot find the most recent individual among ${persons.size} in GEDCOM")
+                    ?: throw NoSuchElementException("cannot find the most recent individual among ${persons.size}")
             }
 
             is RootPolicy.Designated -> {
@@ -77,13 +78,7 @@ class TreeConverter(
             }
             .sortedBy { it.sex }
         val sex = gedcomPerson.eventsFacts[EventType.SEX]
-            ?.let {
-                when (it.value) {
-                    "M" -> Sex.MALE
-                    "F" -> Sex.FEMALE
-                    else -> null
-                }
-            }
+            ?.asSex()
 
         val birth = (gedcomPerson.eventsFacts[EventType.BIRTH] ?: gedcomPerson.eventsFacts[EventType.CHRISTENING])
             ?.date
@@ -101,5 +96,11 @@ class TreeConverter(
             birth = birth,
             death = death,
         )
+    }
+
+    private fun EventFact.asSex() = when (value) {
+        "M" -> Sex.MALE
+        "F" -> Sex.FEMALE
+        else -> null
     }
 }

@@ -35,7 +35,8 @@ fun DigraphScope.node(id: String, label: String) {
 }
 
 fun DigraphScope.edge(fromId: String, toId: String, constraint: Boolean) {
-    writer.println("${prefix}\"$fromId\" -> \"$toId\" [constraint=$constraint, style=${if (constraint) "solid" else "dotted"}]")
+    val style = if (constraint) "solid" else "dotted"
+    writer.println("${prefix}\"$fromId\" -> \"$toId\" [constraint=$constraint, style=$style]")
 }
 
 fun String.escape() = replace("\"", "\\\"")

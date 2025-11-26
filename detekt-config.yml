@@ -1,0 +1,5 @@
+style:
+  NewLineAtEndOfFile:
+    active: false
+  DestructuringDeclarationWithTooManyEntries:
+    maxDestructuringEntries: 4

@@ -7,8 +7,9 @@ import domain.model.RootPolicy
 import presentation.cli.Parameters
 import presentation.ui.GedcomFileChooser
 import presentation.ui.Preview
+import java.io.IOException
 
-object Main {
+object Launcher {
 
     @JvmStatic
     fun main(arguments: Array<String>) {
@@ -18,10 +19,10 @@ object Main {
             input.let { input ->
                 if (input == null) {
                     askFile { chosenFilename ->
-                        generate(chosenFilename, outputPolicy, outputType, !noPreview, rootPolicy, outputField)
+                        chosenFilename.generate(outputPolicy, outputType, !noPreview, rootPolicy, outputField)
                     }
                 } else {
-                    generate(input, outputPolicy, outputType, !noPreview, rootPolicy, outputField)
+                    input.generate(outputPolicy, outputType, !noPreview, rootPolicy, outputField)
                 }
             }
         }
@@ -34,7 +35,14 @@ object Main {
         }
     }
 
-    private fun generate(filename: String, outputPolicy: OutputPolicy, outputType: OutputType, preview: Boolean, rootPolicy: RootPolicy, outputFields: List<OutputField>) {
+    private fun String.generate(
+        outputPolicy: OutputPolicy,
+        outputType: OutputType,
+        preview: Boolean,
+        rootPolicy: RootPolicy,
+        outputFields: List<OutputField>,
+    ) {
+        val filename = this
         try {
             val tree = genealogyRepository.getTree(filename, rootPolicy)
 
@@ -55,9 +63,10 @@ object Main {
             if (preview) {
                 Preview.show(outputFilename)
             }
-        } catch (e: Exception) {
-            System.err.println("generation failed:")
-            e.printStackTrace()
+        } catch (e: NoSuchElementException) {
+            System.err.println("[generation failed] missing element: ${e.message}")
+        } catch (e: IOException) {
+            System.err.println("[generation failed] io error: ${e.message}")
         }
     }
 }

@@ -2,6 +2,7 @@ plugins {
     kotlin("jvm") version "2.2.21"
     application
     alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
 }
 
 group = "org.mrlem.genesys"
@@ -38,7 +39,7 @@ kotlin {
 }
 
 application {
-    mainClass.set("Main")
+    mainClass.set("Launcher")
 }
 
 distributions {
@@ -54,4 +55,11 @@ distributions {
             }
         }
     }
+}
+
+detekt {
+    buildUponDefaultConfig = true // preconfigure defaults
+    allRules = false // activate all available (even unstable) rules.
+    config.setFrom("./detekt-config.yml")
+    source.setFrom(files(projectDir))
 }

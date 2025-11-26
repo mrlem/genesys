@@ -7,6 +7,7 @@ slf4j = "2.0.17"
 junit5 = "5.14.1"
 mockk = "1.14.6"
 ktlint-plugin = "14.0.1"
+detekt = "1.23.8"
 
 [libraries]
 familysearch-gedcom = { group = "org.familysearch.gedcom", name = "gedcom", version.ref = "gedcom" }
@@ -19,3 +20,4 @@ mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint-plugin" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
