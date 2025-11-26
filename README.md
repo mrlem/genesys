@@ -1,5 +1,10 @@
 # Genesys
 
+[![Release](https://img.shields.io/github/v/release/mrlem/genesys?label=version&sort=semver)](https://github.com/mrlem/genesys/releases)
+[![Build](https://github.com/mrlem/genesys/actions/workflows/validate-main.yml/badge.svg)](https://github.com/mrlem/genesys/actions)
+[![KtLint](https://img.shields.io/badge/code--style-%E2%9D%A4%20ktlint-FF4081)](https://pinterest.github.io/ktlint/)
+[![Detekt](https://img.shields.io/badge/static%20analysis-%F0%9F%94%8D%20detekt-purple)](https://detekt.dev/)
+
 *A simple family tree generator that scales.*
 
 ## Features
