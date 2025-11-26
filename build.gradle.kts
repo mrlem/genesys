@@ -1,65 +1,38 @@
-plugins {
-    kotlin("jvm") version "2.2.21"
-    application
-    alias(libs.plugins.ktlint)
-    alias(libs.plugins.detekt)
-}
+import io.gitlab.arturbosch.detekt.Detekt
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
-group = "org.mrlem.genesys"
-version = "1.0.10"
+plugins {
+    kotlin("jvm") version "2.2.21" apply false
+    alias(libs.plugins.ktlint) apply false
+    alias(libs.plugins.detekt) apply false
+}
 
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test"))
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.params)
-    testRuntimeOnly(libs.junit.jupiter.engine)
-    testImplementation(libs.mockk)
+subprojects {
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+        plugin("io.gitlab.arturbosch.detekt")
+        plugin("org.jlleitschuh.gradle.ktlint")
+    }
 
-    implementation(libs.familysearch.gedcom)
-    implementation(libs.kotlinx.cli)
-    implementation(libs.slf4j.nop)
-}
+    repositories {
+        mavenCentral()
+    }
 
-tasks {
-    test {
+    configure<KotlinJvmProjectExtension> {
+        jvmToolchain(21)
+    }
+
+    tasks.withType<Detekt> {
+        buildUponDefaultConfig = true
+        allRules = false
+        config.setFrom(rootProject.file("./detekt-config.yml"))
+    }
+
+    tasks.withType<Test> {
         useJUnitPlatform()
     }
-    distTar {
-        compression = Compression.GZIP
-        archiveExtension.set("tar.gz")
-    }
-}
-
-kotlin {
-    jvmToolchain(21)
-}
-
-application {
-    mainClass.set("Launcher")
-}
-
-distributions {
-    main {
-        contents {
-            from("README.md")
-            from("LICENSE")
-            into("screenshots") {
-                from("screenshots")
-            }
-            into("sample") {
-                from("sample")
-            }
-        }
-    }
-}
-
-detekt {
-    buildUponDefaultConfig = true // preconfigure defaults
-    allRules = false // activate all available (even unstable) rules.
-    config.setFrom("./detekt-config.yml")
-    source.setFrom(files(projectDir))
 }
