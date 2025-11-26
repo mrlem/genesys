@@ -1,4 +1,4 @@
-name: _Reusable validations
+name: _reusable validations
 
 on:
   workflow_call:
