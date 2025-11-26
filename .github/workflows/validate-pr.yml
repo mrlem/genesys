@@ -1,0 +1,9 @@
+name: validate pr
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validation:
+    uses: ./.github/workflows/_reusable-validations.yml
