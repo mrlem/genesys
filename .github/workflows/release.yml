@@ -45,8 +45,8 @@ jobs:
       - name: Setup gradle
         uses: gradle/actions/setup-gradle@v5
 
-      - name: Run unit tests
-        run: ./gradlew test
+      - name: Run checks
+        run: ./gradlew check
 
       - name: Build distributions
         run: ./gradlew assembleDist --no-daemon
