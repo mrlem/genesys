@@ -5,13 +5,13 @@
 [![KtLint](https://img.shields.io/badge/code--style-%E2%9D%A4%20ktlint-FF4081)](https://pinterest.github.io/ktlint/)
 [![Detekt](https://img.shields.io/badge/static%20analysis-%F0%9F%94%8D%20detekt-purple)](https://detekt.dev/)
 
-*A simple family tree generator that scales.*
+*A simple family tree 🌳 generator that **scales**.*
 
 ## Features
 
 It supports:
 * GEDCOM to various visualization formats (PDF & SVG among others)
-* a single tree format, suitable for large trees, that doesn't become a mess when the tree contains loops
+* a single tree format, suitable for **large trees**, that doesn't become a mess when the tree contains loops
 
 Here's what it looks like for a large tree:
 
@@ -59,7 +59,7 @@ looked decent for a large tree (500+ persons), and that handled family loops lik
 Also, I was tired of
 importing my GEDCOM file in every tool on the planet, when all I wanted was to create a PDF.
 
-### Acknowlegments
+### Acknowledgments
 
 Built with:
 
