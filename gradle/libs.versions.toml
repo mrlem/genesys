@@ -4,7 +4,7 @@
 gedcom = "1.14.0"
 cli = "0.3.6"
 slf4j = "2.0.17"
-junit5 = "5.14.1"
+junit5 = "6.0.1"
 mockk = "1.14.6"
 ktlint-plugin = "14.0.1"
 detekt = "1.23.8"
