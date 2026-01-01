@@ -2,7 +2,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 plugins {
-    kotlin("jvm") version "2.2.21" apply false
+    kotlin("jvm") version "2.3.0" apply false
     alias(libs.plugins.ktlint) apply false
     alias(libs.plugins.detekt) apply false
 }
